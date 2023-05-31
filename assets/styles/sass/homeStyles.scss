@@ -1,0 +1,120 @@
+@import "./variables";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans", sans-serif;
+}
+
+body {
+  background-color: $primaryColor;
+}
+.main-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.top {
+  height: 35vh;
+  margin: auto;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: $secondColor;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  -ms-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.top.small {
+  height: 100px;
+  display: block;
+  img {
+    top: 15px;
+    left: 15px;
+    height: 100px;
+  }
+  p {
+    display: none;
+  }
+}
+.library.small {
+  margin-top: 250px;
+}
+
+.add-book {
+  padding: 4px 8px;
+  border-radius: 9999px;
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  background-color: $yellow;
+  border: 2px solid $darkerSecondColor;
+  color: $primaryColor;
+  font-size: 15px;
+}
+.add-book:hover {
+  background-color: $darkerSecondColor;
+  color: white;
+  border-color: $yellow;
+}
+.library {
+  margin: 44px;
+  margin-top: 350px;
+  margin-inline: 10%;
+}
+.title {
+  color: $lighterSecondColor;
+  font-weight: bold;
+  font-size: x-large;
+  margin-bottom: 1rem;
+}
+
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.book {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: space-between;
+  background-color: $lightCream;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+  //   height: 350px;
+  //   padding-left: 10%;
+  font-size: smaller;
+}
+.book img {
+  align-self: center;
+  width: 100px;
+}
+.modal {
+  .modal-content {
+    padding: 15px;
+  }
+  // #file-upload-button {
+  //   border: none;
+  //   background-color: $primaryColor;
+  //   color: $lightCream;
+  // }
+  .modal__choose-file {
+    background: #000;
+  }
+}
+.not-found {
+  color: $lighterSecondColor;
+}
