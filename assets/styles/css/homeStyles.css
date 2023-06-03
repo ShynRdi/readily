@@ -102,4 +102,28 @@ body {
 .not-found {
   color: #ec7459; }
 
+.modal-box {
+  background-color: #1b2b2b;
+  border: 3px solid #f85d37;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #b3bbb9; }
+  .modal-box button {
+    border: 1px solid #f85d37;
+    background-color: #f7c21e;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    margin-top: 1rem; }
+    .modal-box button:hover {
+      background-color: #cb4532;
+      border-color: #f7c21e;
+      color: white; }
+  .modal-box input {
+    background-color: #f3ca9b;
+    border: 2px solid #cb4532;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 1rem; }
+
 /*# sourceMappingURL=homeStyles.css.map */

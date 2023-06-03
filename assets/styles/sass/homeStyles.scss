@@ -118,3 +118,33 @@ body {
 .not-found {
   color: $lighterSecondColor;
 }
+
+.modal-box {
+  background-color: $primaryColor;
+  border: 3px solid $secondColor;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  // gap: 1rem;
+  color: $lighterGray;
+  button {
+    border: 1px solid $secondColor;
+    background-color: $yellow;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    margin-top: 1rem;
+    &:hover {
+      background-color: $darkerSecondColor;
+      border-color: $yellow;
+      color: white;
+    }
+  }
+  input {
+    background-color: $lightCream;
+    border: 2px solid $darkerSecondColor;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 1rem;
+  }
+}

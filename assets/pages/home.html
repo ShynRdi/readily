@@ -62,28 +62,22 @@
       aria-labelledby="myLargeModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="mb-3">
-            <label for="formFileMultiple" class="form-label"
-              >Multiple files input example</label
-            >
-            <!-- <input
-              class="form-control modal__choose-file"
-              type="file"
-              id="formFileMultiple"
-              multiple
-            /> -->
-            <input
-              class="form-control modal__choose-file"
-              type="file"
-              id="fileInput"
-            />
-            <button onclick="storeFile()">Store File</button>
+      <form onsubmit="handelSubmit(event)">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content modal-box">
+            <label for="bookName">Book Name</label>
+            <input type="text" name="bookName" id="bookName" />
+
+            <label for="bookDetails">Book Details</label>
+            <input type="text" name="bookDetails" id="bookDetails" />
+            <label for="bookImage">Image URL</label>
+            <input type="text" name="bookImage" id="bookImage" />
+
+            <button type="submit">Store File</button>
             <div id="fileData"></div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -103,6 +97,12 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <script src="../scripts/homeScript.js"></script>
   </body>
 </html>
