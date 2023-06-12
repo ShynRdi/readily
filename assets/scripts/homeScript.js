@@ -1,7 +1,7 @@
 //handling top of the main page with jquery when scrolling
 $(window).scroll(function () {
   var sc = $(window).scrollTop();
-  if (sc > 100) {
+  if (sc > 40) {
     $(".top").addClass("small");
     $(".library").addClass("small");
   } else {
@@ -9,62 +9,38 @@ $(window).scroll(function () {
     $(".library").removeClass("small");
   }
 });
-// getting value of book input
-
-// let file = document.getElementById("formFileMultiple");
-// const handleFiles = () => {
-//   const selectedFiles = [...file.files];
-//   console.log(selectedFiles);
-// };
-// file.addEventListener("change", handleFiles);
-
-// console.log();
-
-// function storeFile() {
-//   const fileInput = document.getElementById("fileInput");
-//   const file = fileInput.files[0];
-//   if (file) {
-//     const formData = new FormData();
-//     formData.append("file", file);
-//     fetch("http://localhost:3002/upload", {
-//       headers: { "Content-Type": "multipart/form-data" },
-//       method: "POST",
-//       body: formData,
-//     })
-//       .then((response) => response.text())
-//       .then((result) => {
-//         console.log("File stored:", result);
-//       })
-//       .catch((error) => {
-//         console.error("Error storing file:", error);
-//       });
-//   }
-// }
-
-//
+const userName = localStorage.getItem("userName");
 const libraryChecker = document.getElementsByClassName("books")[0];
-
-//check if there is any books in there
-if (!libraryChecker.innerHTML) {
-  const notFound = document.createElement("p");
-  notFound.classList.add("not-found");
-  notFound.innerHTML = "your Library is empty";
-  libraryChecker.appendChild(notFound);
-}
 
 //reading books from db
 (async () => {
-  const response = await fetch("http://localhost:3002/books", {
-    method: "GET",
-  })
+  libraryChecker.innerHTML = `<div class='loading'>
+  <div class='inner-loading-first'></div>
+  <div class='inner-loading-second'></div>
+  <div class='inner-loading-third'></div>
+  </div>`;
+  const response = await fetch(
+    "https://6347ecf70484786c6e8cea40.mockapi.io/books",
+    {
+      method: "GET",
+    }
+  )
     .then((response) => {
-      console.log(1);
       return response.json();
     })
     .then((data) => {
-      console.log(2);
-      libraryChecker.innerHTML = "";
-      data.map((item) => {
+      const userData = data.filter((item) => item.persons == userName);
+      if (userData.length) {
+        libraryChecker.innerHTML = "";
+      } else {
+        libraryChecker.querySelector(".loading").remove();
+        const notFound = document.createElement("p");
+        notFound.classList.add("not-found");
+        notFound.innerHTML = "your Library is empty";
+        libraryChecker.appendChild(notFound);
+      }
+
+      userData.map((item) => {
         const book = document.createElement("div");
         const newBook = `
         <img
@@ -82,8 +58,6 @@ if (!libraryChecker.innerHTML) {
         book.innerHTML += newBook;
         book.classList.add("book");
         libraryChecker.appendChild(book);
-
-        // console.log(item.image);
       });
     })
     .catch((error) => {
@@ -91,79 +65,35 @@ if (!libraryChecker.innerHTML) {
     });
 })();
 
-console.log(1);
-
-//   if (file) {
-//     const targetPath = "../books" + file.name;
-//     const reader = await new FileReader();
-
-//     reader.onload = function (event) {
-//       const fileData = event.target.result;
-
-//       // Display the file data in the fileData element
-//       const fileDataElement = document.getElementById("fileData");
-//       fileDataElement.textContent = fileData;
-
-//       console.log("File stored at:", targetPath);
-//     };
-
-//     reader.readAsDataURL(file);
-//   }
-// }
-
-function handelSubmit(e) {
+//handling add books
+async function handelSubmit(e) {
   e.preventDefault();
-  axios.post("http://localhost:3002/books", {
-    image: `${document.getElementById("bookImage").value}`,
-    title: `${document.getElementById("bookName").value}`,
-    details: `${document.getElementById("bookDetails").value}`,
-  });
+  const bookImage = document.getElementById("bookImage");
+  const bookTitle = document.getElementById("bookName");
+  const bookDetail = document.getElementById("bookDetails");
+  if (bookDetail.value && bookImage.value && bookTitle.value) {
+    await axios.post("https://6347ecf70484786c6e8cea40.mockapi.io/books", {
+      image: `${bookImage.value}`,
+      title: `${bookTitle.value}`,
+      details: `${bookDetail.value}`,
+      persons: `${userName}`,
+    });
+    window.location.reload();
+  } else {
+    document.getElementById("inputWarning").style = "display:block;";
+  }
 }
-// var myHeaders = new Headers();
-// myHeaders.append("token", "");
-// const fileInput = document.querySelector("input[type='file']");
-// myHeaders.append("Content-Type", "multipart/form-data");
-// console.log(fileInput.files[0]);
-// var formdata = new FormData();
-// formdata.append("image", fileInput.files[0]);
 
-// var requestOptions = {
-//   method: "POST",
-//   headers: myHeaders,
-//   body: formdata,
-//   redirect: "follow",
-// };
+//handling logout book
+function logOut() {
+  localStorage.clear();
+  location.href = "/index.html";
+}
 
-// fetch("http://localhost:3002/upload", requestOptions)
-//   .then((response) => response.text())
-//   .then((result) => console.log(result))
-//   .catch((error) => console.log("error", error));
-// const axios = require('axios');
-// const FormData = require("form-data");
-// const fs = require("fs");
-// let data = new FormData();
-// data.append(
-//   "image",
-//   document.getElementById("fileInput").files[0]
-//   // fs.createReadStream("/home/user/Documents/computer sciencs/report/test.pdf")
-// );
-
-// let config = {
-//   method: "post",
-//   maxBodyLength: Infinity,
-//   url: "http://localhost:3002/upload",
-//   headers: {
-//     // token: "",
-//     // ...data.getHeaders(),
-//   },
-//   data: data,
-// };
-
-// axios
-//   .request(config)
-//   .then((response) => {
-//     console.log(JSON.stringify(response.data));
-//   })
-//   .catch((error) => {
-//     console.log(error);
+//handling delete an item from mock api
+// (async () => {
+//   await fetch(`https://6347ecf70484786c6e8cea40.mockapi.io/books/${bookId}`, {
+//     method: "DELETE",
 //   });
+//   element.innerHTML = "Delete successful";
+// })();

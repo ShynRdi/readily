@@ -40,7 +40,7 @@ body {
   display: block;
   img {
     top: 15px;
-    left: 15px;
+    margin-left: 100px;
     height: 100px;
   }
   p {
@@ -69,8 +69,11 @@ body {
 }
 .library {
   margin: 44px;
-  margin-top: 350px;
+  margin-top: 36vh;
   margin-inline: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .title {
   color: $lighterSecondColor;
@@ -84,6 +87,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  margin-bottom: 60px;
 }
 .book {
   display: flex;
@@ -94,8 +98,6 @@ body {
   padding: 10px;
   border-radius: 5px;
   width: 200px;
-  //   height: 350px;
-  //   padding-left: 10%;
   font-size: smaller;
 }
 .book img {
@@ -106,11 +108,6 @@ body {
   .modal-content {
     padding: 15px;
   }
-  // #file-upload-button {
-  //   border: none;
-  //   background-color: $primaryColor;
-  //   color: $lightCream;
-  // }
   .modal__choose-file {
     background: #000;
   }
@@ -118,15 +115,87 @@ body {
 .not-found {
   color: $lighterSecondColor;
 }
-
+.loading {
+  width: 17px;
+  height: 15px;
+  display: flex;
+  gap: 1px;
+}
+.inner-loading-first {
+  width: 5px;
+  background-color: $lighterSecondColor;
+  align-self: flex-end;
+  animation: firstLoading 1s infinite;
+}
+@keyframes firstLoading {
+  0% {
+    height: 100%;
+  }
+  25% {
+    height: 50%;
+  }
+  50% {
+    height: 0%;
+  }
+  75% {
+    height: 50%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+.inner-loading-second {
+  width: 5px;
+  background-color: $lighterSecondColor;
+  align-self: flex-end;
+  animation: secondLoading 1s infinite;
+}
+@keyframes secondLoading {
+  0% {
+    height: 50%;
+  }
+  25% {
+    height: 0%;
+  }
+  50% {
+    height: 50%;
+  }
+  75% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+.inner-loading-third {
+  width: 5px;
+  background-color: $lighterSecondColor;
+  align-self: flex-end;
+  animation: thirdLoading 1s infinite;
+}
+@keyframes thirdLoading {
+  0% {
+    height: 0%;
+  }
+  25% {
+    height: 50%;
+  }
+  50% {
+    height: 100%;
+  }
+  75% {
+    height: 50%;
+  }
+  100% {
+    height: 0%;
+  }
+}
 .modal-box {
   background-color: $primaryColor;
   border: 3px solid $secondColor;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
-  // gap: 1rem;
   color: $lighterGray;
   button {
     border: 1px solid $secondColor;
@@ -146,5 +215,30 @@ body {
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 1rem;
+  }
+}
+.log-out {
+  padding: 4px 8px;
+  border-radius: 9999px;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  background-color: $yellow;
+  border: 2px solid $darkerSecondColor;
+  color: $primaryColor;
+  font-size: 15px;
+  z-index: 100;
+}
+.log-out:hover {
+  background-color: $darkerSecondColor;
+  color: white;
+  border-color: $yellow;
+}
+.modal {
+  p {
+    color: rgb(0, 255, 0);
+    display: none;
+    font-size: 20px;
+    font-weight: bold;
   }
 }

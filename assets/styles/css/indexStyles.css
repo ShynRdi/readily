@@ -12,9 +12,11 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh; }
-  .main-page h1 {
+  .main-page p {
     color: lime;
-    display: none; }
+    display: none;
+    font-size: 20px;
+    font-weight: bold; }
   .main-page a {
     font-size: smaller;
     color: #1b2b2b; }

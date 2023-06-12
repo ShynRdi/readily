@@ -1,36 +1,35 @@
-//skipping the login page
-// function formLoginSubmission(e) {
-//   e.preventDefault();
-//   location.href = "../../../Readily/assets/pages/home.html";
-// }
-
 //login handling
 const userName = document.getElementById("userName");
 const userPass = document.getElementById("password");
 const formLoginSubmission = async (e) => {
   e.preventDefault();
   if (!userName || !userPass) {
-    console.log("your have to fill all of the boxes");
     document.getElementById("wrongText").style = "display:block";
   } else {
     document.getElementById("wrongText").style = "display:none";
-    const response = await fetch("http://localhost:3002/users", {
-      method: "GET",
-    })
+    const response = await fetch(
+      "https://6347ecf70484786c6e8cea40.mockapi.io/users",
+      {
+        method: "GET",
+      }
+    )
       .then((response) => {
-        console.log("mozeDaryaii");
         return response.json();
       })
       .then((data) => {
+        let validity;
         data.map((item) => {
-          console.log(2, item.username, userName.value);
           if (item.username == userName.value) {
-            console.log("asd");
             if (userPass.value == item.password) {
-              location.href = "../../../Readily/assets/pages/home.html";
+              location.href = "/assets/pages/home.html";
+              localStorage.setItem("userName", userName.value);
+              validity = true;
             }
           }
         });
+        if (!validity) {
+          document.getElementById("wrongText").style = "display:block";
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -42,33 +41,60 @@ const formLoginSubmission = async (e) => {
 const userRealName = document.getElementById("userRealName");
 const formSignupSubmission = async (e) => {
   e.preventDefault();
-
   if (userName.value && userPass.value && userRealName.value) {
-    console.log("asd");
-
-    const response = await fetch("http://localhost:3002/users", {
-      method: "POST",
-      body: JSON.stringify({
-        name: userRealName.value,
-        username: userName.value,
-        password: userPass.value,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
+    let validity;
+    const response = await fetch(
+      "https://6347ecf70484786c6e8cea40.mockapi.io/users",
+      {
+        method: "GET",
+      }
+    )
       .then((response) => {
-        response.json();
+        return response.json();
       })
-      .then((json) => {
-        return json.json();
+      .then((data) => {
+        const targetUser = data.find((item) => item.username == userName.value);
+        if (targetUser) {
+          document.getElementById("wrongText").style = "display:block";
+          document.getElementById("wrongText").innerHTML =
+            "Your username<br> already exists,<br> try a new one";
+        } else {
+          validity = true;
+        }
+        if (validity) {
+          (async () => {
+            const response = await fetch(
+              "https://6347ecf70484786c6e8cea40.mockapi.io/users",
+              {
+                method: "POST",
+                body: JSON.stringify({
+                  name: userRealName.value,
+                  username: userName.value,
+                  password: userPass.value,
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                },
+              }
+            )
+              .then((response) => {
+                response.json();
+                localStorage.setItem("userName", userName.value);
+                location.href = "/assets/pages/home.html";
+              })
+              .then((json) => {
+                return json.json();
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })();
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-    location.href = "../../../Readily/assets/pages/home.html";
   } else {
-    console.log("your user name or password is wrong");
     document.getElementById("wrongText").style = "display:block";
   }
 };
