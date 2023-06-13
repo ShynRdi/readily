@@ -49,7 +49,13 @@ const libraryChecker = document.getElementsByClassName("books")[0];
       userData.map((item) => {
         const book = document.createElement("div");
         const newBook = `
-        <img
+        <img 
+          src="../img/icons8-delete-24.png"
+          alt="${item.id}"
+          class="edit-button"
+          onclick="editPandel(event)"
+          />
+          <img
           src="${item.image}"
           alt=""
           />
@@ -102,3 +108,15 @@ function logOut() {
 //     method: "DELETE",
 //   });
 // })();
+
+function editPandel(e) {
+  const getId = e.target.parentElement.getElementsByTagName("img")[0].alt;
+  console.log(getId);
+  (async () => {
+    await fetch(`https://6347ecf70484786c6e8cea40.mockapi.io/books/${getId}`, {
+      method: "DELETE",
+    });
+
+    window.location.reload();
+  })();
+}

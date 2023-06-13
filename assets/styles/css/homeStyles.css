@@ -31,7 +31,8 @@ body {
   -moz-transition: all 0.2s ease-out;
   -webkit-transition: all 0.2s ease-out;
   -o-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out; }
+  transition: all 0.2s ease-out;
+  z-index: 1; }
 
 .top.small {
   height: 100px;
@@ -209,5 +210,23 @@ body {
   display: none;
   font-size: 20px;
   font-weight: bold; }
+
+.edit-button {
+  width: 25px !important;
+  height: 25px;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 999px;
+  background-color: #ec7459; }
+
+.book {
+  position: relative; }
+
+.book:hover .edit-button {
+  display: block; }
 
 /*# sourceMappingURL=homeStyles.css.map */
