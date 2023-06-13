@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body onload="loadingLoginPage();">
     <div class="main-page">
       <form action="#" class="login-form">
         <img
@@ -30,6 +30,10 @@
         <input type="text" name="userName" id="userName" />
         <label for="password">Enter your password:</label>
         <input type="password" name="password" id="password" />
+        <a href="#" class="stay-signed-in" onclick="signedInHandler()">
+          <input type="checkbox" name="staySignedIn" id="staySignedIn" />
+          <label for="staySignedIn">Do you wants to stayed sign in?</label>
+        </a>
         <input type="submit" onclick="formLoginSubmission(event)" />
         <a href="./assets/pages/signUpPage.html" class="sign-up"
           >let's make your account</a

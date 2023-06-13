@@ -98,3 +98,23 @@ const formSignupSubmission = async (e) => {
     document.getElementById("wrongText").style = "display:block";
   }
 };
+
+//handling stay signed in
+const checkBox = document.querySelector("#staySignedIn");
+const checkBoxTag = document.querySelector(".stay-signed-in");
+function signedInHandler() {
+  if (checkBox.checked) {
+    checkBox.checked = false;
+    localStorage.setItem("checkBox", "not-checked");
+  } else {
+    checkBox.checked = true;
+    localStorage.setItem("checkBox", "checked");
+  }
+}
+function loadingLoginPage() {
+  if (!checkBox.checked) {
+    localStorage.clear();
+  } else {
+    location.href = "/assets/pages/home.html";
+  }
+}

@@ -1,3 +1,9 @@
+//
+function signedInChecker() {
+  if (!localStorage.getItem("userName")) {
+    location.href = "../../index.html";
+  }
+}
 //handling top of the main page with jquery when scrolling
 $(window).scroll(function () {
   var sc = $(window).scrollTop();
@@ -95,5 +101,4 @@ function logOut() {
 //   await fetch(`https://6347ecf70484786c6e8cea40.mockapi.io/books/${bookId}`, {
 //     method: "DELETE",
 //   });
-//   element.innerHTML = "Delete successful";
 // })();

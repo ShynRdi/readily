@@ -54,4 +54,11 @@ input[type="submit"]:hover {
 .logo {
   padding-bottom: 10px; }
 
+.stay-signed-in {
+  font-size: smaller;
+  color: #1b2b2b;
+  display: flex;
+  gap: 0.25rem;
+  cursor: pointer; }
+
 /*# sourceMappingURL=indexStyles.css.map */
