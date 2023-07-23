@@ -33,7 +33,8 @@ const formLoginSubmission = async (e) => {
           if (item.username == userName.value) {
             if (userPass.value == item.password) {
               // location.href = getURL("/assets/pages/home.html");
-              location.replace(getURL("/assets/pages/home.html"));
+              // location.replace(getURL("/assets/pages/home.html"));
+              console.log(getURL("/assets/pages/home.html"));
 
               localStorage.setItem("userName", userName.value);
               validity = true;
