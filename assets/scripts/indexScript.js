@@ -3,7 +3,7 @@ function getURL(path) {
   const isGitHubPages = window.location.hostname === "shynrdi.github.io";
 
   // Set the base URL based on the environment
-  const baseURL = isGitHubPages + "/readily-pure";
+  const baseURL = isGitHubPages ? "/readily-pure" : "";
 
   // Combine the baseURL with the path and return the final URL
   return baseURL + path;
