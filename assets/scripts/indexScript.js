@@ -32,8 +32,8 @@ const formLoginSubmission = async (e) => {
           if (item.username == userName.value) {
             if (userPass.value == item.password) {
               // location.href = getURL("/assets/pages/home.html");
-              // location.replace(getURL("/assets/pages/home.html"));
-              console.log(getURL("/assets/pages/home.html"));
+              location.replace(getURL("/assets/pages/home.html"));
+              // console.log(getURL("/assets/pages/home.html"));
 
               localStorage.setItem("userName", userName.value);
               validity = true;
@@ -95,7 +95,7 @@ const formSignupSubmission = async (e) => {
                 localStorage.setItem("userName", userName.value);
                 // location.href = "./assets/pages/home.html";
                 // location.href = getURL("/assets/pages/home.html");
-                // location.replace(getURL("/assets/pages/home.html"));
+                location.replace(getURL("/assets/pages/home.html"));
               })
               .then((json) => {
                 return json.json();
@@ -132,6 +132,6 @@ function loadingLoginPage() {
   } else {
     // location.href = "./assets/pages/home.html";
     // location.href = getURL("/assets/pages/home.html");
-    // location.replace(getURL("/assets/pages/home.html"));
+    location.replace(getURL("/assets/pages/home.html"));
   }
 }
