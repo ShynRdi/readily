@@ -109,21 +109,11 @@ async function handelSubmit(e) {
 //handling logout book
 function logOut() {
   localStorage.clear();
-  // location.href = "/index.html";
   location.replace(getURL("/index.html"));
-  // location.href = getURL("/index.html");
 }
-
-//handling delete an item from mock api
-// (async () => {
-//   await fetch(`https://6347ecf70484786c6e8cea40.mockapi.io/books/${bookId}`, {
-//     method: "DELETE",
-//   });
-// })();
 
 function editPandel(e) {
   const getId = e.target.parentElement.getElementsByTagName("img")[0].alt;
-  console.log(getId);
   (async () => {
     await fetch(`https://6347ecf70484786c6e8cea40.mockapi.io/books/${getId}`, {
       method: "DELETE",
