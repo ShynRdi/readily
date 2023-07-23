@@ -112,7 +112,7 @@ async function handelSubmit(e) {
 function logOut() {
   localStorage.clear();
   // location.href = "/index.html";
-  location.href = getURL("/index.html");
+  location.href = getURL("../../index.html");
 }
 
 //handling delete an item from mock api
