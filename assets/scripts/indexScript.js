@@ -32,7 +32,9 @@ const formLoginSubmission = async (e) => {
         data.map((item) => {
           if (item.username == userName.value) {
             if (userPass.value == item.password) {
-              location.href = getURL("/assets/pages/home.html");
+              // location.href = getURL("/assets/pages/home.html");
+              location.replace(getURL("/assets/pages/home.html"));
+
               localStorage.setItem("userName", userName.value);
               validity = true;
             }
@@ -92,7 +94,8 @@ const formSignupSubmission = async (e) => {
                 response.json();
                 localStorage.setItem("userName", userName.value);
                 // location.href = "./assets/pages/home.html";
-                location.href = getURL("/assets/pages/home.html");
+                // location.href = getURL("/assets/pages/home.html");
+                location.replace(getURL("/assets/pages/home.html"));
               })
               .then((json) => {
                 return json.json();
@@ -128,6 +131,7 @@ function loadingLoginPage() {
     localStorage.clear();
   } else {
     // location.href = "./assets/pages/home.html";
-    location.href = getURL("/assets/pages/home.html");
+    // location.href = getURL("/assets/pages/home.html");
+    location.replace(getURL("/assets/pages/home.html"));
   }
 }

@@ -13,7 +13,7 @@ function getURL(path) {
 function signedInChecker() {
   if (!localStorage.getItem("userName")) {
     // location.href = "../../index.html";
-    location.href = getURL("../../index.html");
+    location.replace(getURL("/index.html"));
   }
 }
 //handling top of the main page with jquery when scrolling
@@ -112,7 +112,8 @@ async function handelSubmit(e) {
 function logOut() {
   localStorage.clear();
   // location.href = "/index.html";
-  location.href = getURL("/index.html");
+  location.replace(getURL("/index.html"));
+  // location.href = getURL("/index.html");
 }
 
 //handling delete an item from mock api
