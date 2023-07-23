@@ -1,7 +1,19 @@
+function getURL(path) {
+  // Check if the app is running on GitHub Pages or locally
+  const isGitHubPages = window.location.hostname === "shynrdi.github.io";
+
+  // Set the base URL based on the environment
+  const baseURL = isGitHubPages ? "/readily-pure" : "";
+
+  // Combine the baseURL with the path and return the final URL
+  return baseURL + path;
+}
+
 //
 function signedInChecker() {
   if (!localStorage.getItem("userName")) {
-    location.href = "../../index.html";
+    // location.href = "../../index.html";
+    location.href = getURL("../../index.html");
   }
 }
 //handling top of the main page with jquery when scrolling
@@ -99,7 +111,8 @@ async function handelSubmit(e) {
 //handling logout book
 function logOut() {
   localStorage.clear();
-  location.href = "/index.html";
+  // location.href = "/index.html";
+  location.href = getURL("/index.html");
 }
 
 //handling delete an item from mock api

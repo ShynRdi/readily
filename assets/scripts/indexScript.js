@@ -1,3 +1,14 @@
+function getURL(path) {
+  // Check if the app is running on GitHub Pages or locally
+  const isGitHubPages = window.location.hostname === "shynrdi.github.io";
+
+  // Set the base URL based on the environment
+  const baseURL = isGitHubPages ? "/readily-pure" : "";
+
+  // Combine the baseURL with the path and return the final URL
+  return baseURL + path;
+}
+
 //login handling
 const userName = document.getElementById("userName");
 const userPass = document.getElementById("password");
@@ -21,7 +32,7 @@ const formLoginSubmission = async (e) => {
         data.map((item) => {
           if (item.username == userName.value) {
             if (userPass.value == item.password) {
-              location.href = "./assets/pages/home.html";
+              location.href = getURL("/assets/pages/home.html");
               localStorage.setItem("userName", userName.value);
               validity = true;
             }
@@ -80,7 +91,8 @@ const formSignupSubmission = async (e) => {
               .then((response) => {
                 response.json();
                 localStorage.setItem("userName", userName.value);
-                location.href = "./assets/pages/home.html";
+                // location.href = "./assets/pages/home.html";
+                location.href = getURL("/assets/pages/home.html");
               })
               .then((json) => {
                 return json.json();
@@ -115,6 +127,7 @@ function loadingLoginPage() {
   if (!checkBox.checked) {
     localStorage.clear();
   } else {
-    location.href = "./assets/pages/home.html";
+    // location.href = "./assets/pages/home.html";
+    location.href = getURL("/assets/pages/home.html");
   }
 }
